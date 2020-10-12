@@ -18,40 +18,40 @@ import FusionTheme from "fusioncharts/themes/fusioncharts.theme.fusion";
 ReactFC.fcRoot(FusionCharts, Chart, FusionTheme);
 
 // STEP 2 - Chart Data
-const chartData = [
-  {
-    label: "Venezuela",
-    value: "344",
-  },
-  {
-    label: "Saudi",
-    value: "260",
-  },
-  {
-    label: "Canada",
-    value: "180",
-  },
-  {
-    label: "Iran",
-    value: "140",
-  },
-  {
-    label: "Russia",
-    value: "115",
-  },
-  {
-    label: "UAE",
-    value: "100",
-  },
-  {
-    label: "US",
-    value: "30",
-  },
-  {
-    label: "China",
-    value: "30",
-  },
-];
+// const chartData = [
+//   {
+//     label: "Venezuela",
+//     value: "344",
+//   },
+//   {
+//     label: "Saudi",
+//     value: "260",
+//   },
+//   {
+//     label: "Canada",
+//     value: "180",
+//   },
+//   {
+//     label: "Iran",
+//     value: "140",
+//   },
+//   {
+//     label: "Russia",
+//     value: "115",
+//   },
+//   {
+//     label: "UAE",
+//     value: "100",
+//   },
+//   {
+//     label: "US",
+//     value: "30",
+//   },
+//   {
+//     label: "China",
+//     value: "30",
+//   },
+// ];
 
 // STEP 3 - Creating the JSON object to store the chart configurations
 
