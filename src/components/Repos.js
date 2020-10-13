@@ -68,6 +68,8 @@ const Repos = () => {
         <Pie3D data={mostUsed} />
         <div></div>
         <Doughnut2D data={mostPopular} />
+        <div></div>
+        <Column3D data={mostPopular} />
       </Wrapper>
     </section>
   );
