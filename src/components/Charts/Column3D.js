@@ -26,10 +26,12 @@ const ChartComponent = ({ data }) => {
     dataSource: {
       // Chart Configuration
       chart: {
-        caption: "Languages",
+        caption: "Most Popular",
         theme: "gammel",
-        decimals: 0,
-        pieRadius: "43%",
+        yAxisName: "Stars",
+        xAxisName: "Repos",
+        yAxisNameFontSize: "18px",
+        xAxisNameFontSize: "18px",
       },
       // Chart Data
       data,
