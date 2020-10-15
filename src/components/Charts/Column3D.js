@@ -12,7 +12,7 @@ import FusionCharts from "fusioncharts";
 import Chart from "fusioncharts/fusioncharts.charts";
 
 // Include the theme as fusion
-import FusionTheme from "fusioncharts/themes/fusioncharts.theme.gammel";
+import FusionTheme from "fusioncharts/themes/fusioncharts.theme.fusion";
 
 // Adding the chart and theme as dependency to the core fusioncharts
 ReactFC.fcRoot(FusionCharts, Chart, FusionTheme);
@@ -27,11 +27,11 @@ const ChartComponent = ({ data }) => {
       // Chart Configuration
       chart: {
         caption: "Most Popular",
-        theme: "gammel",
-        yAxisName: "Stars",
-        xAxisName: "Repos",
-        yAxisNameFontSize: "18px",
-        xAxisNameFontSize: "18px",
+        // theme: "fusion",
+        yAxisName: "STARS",
+        xAxisName: "REPOSITORIES",
+        yAxisNameFontSize: "13px",
+        xAxisNameFontSize: "13px",
       },
       // Chart Data
       data,

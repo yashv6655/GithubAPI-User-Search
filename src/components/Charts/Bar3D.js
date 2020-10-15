@@ -27,11 +27,11 @@ const ChartComponent = ({ data }) => {
       // Chart Configuration
       chart: {
         caption: "Most Forked",
-        theme: "gammel",
-        yAxisName: "Forks",
-        xAxisName: "Repos",
-        yAxisNameFontSize: "18px",
-        xAxisNameFontSize: "18px",
+        // theme: "gammel",
+        yAxisName: "FORKS",
+        xAxisName: "REPOSITORIES",
+        yAxisNameFontSize: "13px",
+        xAxisNameFontSize: "13px",
       },
       // Chart Data
       data,
