@@ -13,9 +13,10 @@ const GithubProvider = ({ children }) => {
   const [githubUser, setGithubUser] = useState(mockUser);
   const [repos, setRepos] = useState(mockRepos);
   const [followers, setFollowers] = useState(mockFollowers);
-  //requests and loading
+  //requests, loading & error
   const [requests, setRequests] = useState(0);
   const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState({ show: false, msg: "" });
 
   // check rate
   const checkRequests = () => {
@@ -25,20 +26,25 @@ const GithubProvider = ({ children }) => {
         let {
           rate: { remaining },
         } = data;
-
         setRequests(remaining);
 
         if (remaining === 0) {
-          //throw error
+          toggleError(true, "Can't fetch user. You are out of requests.");
         }
       })
       .catch((err) => console.log(err));
   };
 
+  function toggleError(show = false, msg = "") {
+    setError({ show, msg });
+  }
+
   useEffect(checkRequests, []);
 
   return (
-    <GithubContext.Provider value={{ githubUser, repos, followers, requests }}>
+    <GithubContext.Provider
+      value={{ githubUser, repos, followers, requests, error }}
+    >
       {children}
     </GithubContext.Provider>
   );
