@@ -1,81 +1,86 @@
-import React, {useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import mockUser from "./mockData.js/mockUser";
 import mockRepos from "./mockData.js/mockRepos";
 import mockFollowers from "./mockData.js/mockFollowers";
 import axios from "axios";
-import {createContext} from "react";
+import { createContext } from "react";
 
 const rootUrl = "https://api.github.com";
 
 const GithubContext = createContext();
 
-const GithubProvider = ({children}) => {
+const GithubProvider = ({ children }) => {
   const [githubUser, setGithubUser] = useState(mockUser);
   const [repos, setRepos] = useState(mockRepos);
   const [followers, setFollowers] = useState(mockFollowers);
   //requests, loading & error
   const [requests, setRequests] = useState(0);
   const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState({show: false, msg: ""});
+  const [error, setError] = useState({ show: false, msg: "" });
 
   const searchGithubUser = async (user) => {
     toggleError();
-    setIsLoading(true)
-    const response = await axios(`${rootUrl}/users/${user}`).catch((err) => console.log(err));
+    setIsLoading(true);
+    const response = await axios(`${rootUrl}/users/${user}`).catch((err) =>
+      console.log(err)
+    );
 
     if (response) {
       setGithubUser(response.data);
-      const {login, followers_url} = response.data
+      const { login, followers_url } = response.data;
       //get repos
-      axios(`${rootUrl}/users/${login}/repos?per_page=100`).then(response => {
-        setRepos(response.data)
-      })
+      axios(`${rootUrl}/users/${login}/repos?per_page=100`).then((response) => {
+        setRepos(response.data);
+      });
       // Get followers
-      axios(`${followers_url}?per_page=100`).then(response => {
-        setFollowers(response.data)
-      })
-
+      axios(`${followers_url}?per_page=100`).then((response) => {
+        setFollowers(response.data);
+      });
     } else {
       toggleError(true, "User does not exist.");
     }
-    checkRequests()
-    setIsLoading(false)
+    checkRequests();
+    setIsLoading(false);
   };
 
   // check rate
   const checkRequests = () => {
-    axios.get(`${rootUrl}/rate_limit`).then(({data}) => {
-      let {rate: {
-          remaining
-        }} = data;
-      setRequests(remaining);
+    axios
+      .get(`${rootUrl}/rate_limit`)
+      .then(({ data }) => {
+        let {
+          rate: { remaining },
+        } = data;
+        setRequests(remaining);
 
-      if (remaining === 0) {
-        toggleError(true, "Can't fetch user. You are out of requests.");
-      }
-    }).catch((err) => console.log(err));
+        if (remaining === 0) {
+          toggleError(true, "Can't fetch user. You are out of requests.");
+        }
+      })
+      .catch((err) => console.log(err));
   };
 
   function toggleError(show = false, msg = "") {
-    setError({show, msg});
+    setError({ show, msg });
   }
 
   useEffect(checkRequests, []);
 
-  return (<GithubContext.Provider value={{
-      githubUser,
-      repos,
-      followers,
-      requests,
-      error,
-      searchGithubUser,
-      isLoading
-    }}>
-    {children}
-  </GithubContext.Provider>);
+  return (
+    <GithubContext.Provider
+      value={{
+        githubUser,
+        repos,
+        followers,
+        requests,
+        error,
+        searchGithubUser,
+        isLoading,
+      }}
+    >
+      {children}
+    </GithubContext.Provider>
+  );
 };
 
-export {
-  GithubContext,
-  GithubProvider
-};
+export { GithubContext, GithubProvider };
