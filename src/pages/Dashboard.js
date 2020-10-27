@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { Info, Repos, User, Search, Navbar } from "../components";
-import loadingImage from "../images/preloader.gif";
+import loadingImage from "../images/Double-Ring.gif";
 import { GithubContext } from "../context/context";
 const Dashboard = () => {
   const { isLoading } = useContext(GithubContext);
